@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <span v-on="gotoLink()">google</span>
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
@@ -146,6 +147,16 @@ export default {
         href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
       }
     ]
-  })
+  }),
+  methods: {
+    gotoLink () {
+      window.alert('google')
+    }
+  },
+  watch: {
+    email (val) {
+      console.log('email',val)
+    }
+  }
 }
 </script>
