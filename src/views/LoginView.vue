@@ -1,8 +1,8 @@
 <template>
   <v-container>
-  <v-row>
+  
   <LoginForm/>
-  </v-row>
+  
   </v-container>
 </template>
 

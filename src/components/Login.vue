@@ -1,63 +1,34 @@
 <template>
+<v-card>
+  <v-card-title style="font-size: 24px |importtant;">เข้าสู่ระบบ</v-card-title>
+  <v-card-text>
  <v-form
-    ref="form"
+    ref="LoginForm"
     v-model="valid"
     lazy-validation
   >
     <v-text-field
       v-model="name"
-      :counter="10"
+      :counter="20"
       :rules="nameRules"
-      label="Name"
+      label="ชื่อผู้ใช้งาน"
       required
+      outlined
     ></v-text-field>
 
     <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="E-mail"
+      v-model="password"
+      :rules="passwordRules"
+      label="รหัสผ่าน"
       required
+      outlined
     ></v-text-field>
-
-    <v-select
-      v-model="select"
-      :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      label="Item"
-      required
-    ></v-select>
-
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
-      required
-    ></v-checkbox>
-
-    <v-btn
-      :disabled="!valid"
-      color="success"
-      class="mr-4"
-      @click="validate"
-    >
-      Validate
-    </v-btn>
-
-    <v-btn
-      color="error"
-      class="mr-4"
-      @click="reset"
-    >
-      Reset Form
-    </v-btn>
-
-    <v-btn
-      color="warning"
-      @click="resetValidation"
-    >
-      Reset Validation
-    </v-btn>
+    <v-btn :disabled="!valid" color="success" @click="Login" block>
+          เข้าสู่ระบบ
+        </v-btn>
   </v-form>
+  </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -66,36 +37,29 @@
       valid: true,
       name: '',
       nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        v => !!v || 'กรุณากรอกชื่อผู้ใช้งาน',
+        v => (v && v.length <= 20) || 'กรุณากรอกข้อมูลชื่อผู้ใช้งานห้ามเกิน 20 ตัวอักษร',
       ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
-      checkbox: false,
+      password: '',
+      passwordRules: [
+        v => !!v || 'กรุณากรอกรหัสผ่าน',
+      ]
     }),
 
     methods: {
-      validate () {
-        this.$refs.form.validate()
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
+      Login () {
+        if (this.$refs.LoginForm.validate(true)) {
+          localStorage.setItem('username', this.name)
+          this.$EventBus.$emit('getUsername')
+          this.$router.push('/')
+        alert('ผ่าน');
+         } else {
+          alert('ไม่ผ่าน');
+
+         }
       },
     },
-  }
+  };
 </script>
 
 <style>
