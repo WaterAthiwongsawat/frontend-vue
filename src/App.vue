@@ -27,6 +27,14 @@
 
       <v-spacer></v-spacer>
 
+<v-btn
+        
+        text
+        @click="goToManage()"
+      >
+        หน้าจัดการข้อมูล
+      </v-btn>
+
       <v-btn
         
         text
@@ -53,6 +61,9 @@ export default {
   methods: {
      goToLogin () {
        this.$router.push('/login')
+     },
+     goToManage () {
+      this.$router.push({ path: '/manageTable' }).catch(() => {})
      }
   }
 }
