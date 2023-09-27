@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ProductView from '../views/ProductView.vue'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,12 @@ const routes = [
   path: '/manageTable',
   name: 'manageTable',
   component: () => import('../views/TableView.vue')
-}
+},
+{
+  path: '/manageProduct',
+  name: 'manageProduct',
+  component: () => import('../views/ProductView.vue')
+},
 ]
 
 const router = new VueRouter({

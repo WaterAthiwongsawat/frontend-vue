@@ -27,6 +27,14 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn
+        
+        text
+        @click="goToManageProduct()"
+      >
+        CONNECT BACKEND
+      </v-btn>
+
 <v-btn
         
         text
@@ -64,6 +72,9 @@ export default {
      },
      goToManage () {
       this.$router.push({ path: '/manageTable' }).catch(() => {})
+     },
+     goToManageProduct () {
+      this.$router.push({ path: '/manageProduct' }).catch(() => {})
      }
   }
 }
